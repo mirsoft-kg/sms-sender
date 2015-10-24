@@ -67,7 +67,7 @@ class SMSC(object):
 
         sender = quote(sender) if sender else ''
         time = time if time else ''
-        args = 'cost=3phones=%(phones)s&mes=%(mes)s&translit=%(translit)d&id=%(id)d&sender=%(sender)s&time=%(time)s' % {
+        args = 'cost=3&phones=%(phones)s&mes=%(mes)s&translit=%(translit)d&id=%(id)d&sender=%(sender)s&time=%(time)s' % {
             'phones': phones,
             'mes': quote(message),
             'translit': int(translit),
