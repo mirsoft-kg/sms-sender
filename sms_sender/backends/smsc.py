@@ -86,9 +86,9 @@ class SMSC(object):
 
         if settings.DEBUG:
             if response[1] > "0":
-                print(u"Сообщение отправлено успешно. ID: " + response[0] + u", всего SMS: " + response[1] + u", стоимость: " + response[2] + u", баланс: " + response[3])
+                print(u"Soobschenie otpravleno uspeshno. ID: " + response[0] + u", vsego SMS: " + response[1] + u", stoimost: " + response[2] + u", balans: " + response[3])
             else:
-                print(u"Ошибка №" + response[1][1:] + u", ID: " + response[0])
+                print(u"Oshibka #" + response[1][1:] + u", ID: " + response[0])
 
         result = {'id': response[0],
                   'status': STATUS_CHOICES[response[1][1:]] if response[1][1:] != '' else STATUS_CHOICES['0'],
@@ -127,7 +127,7 @@ class SMSC(object):
 
         if ret == "":
             if settings.DEBUG:
-                print(u"Ошибка чтения адреса: " + url)
+                print(u"Oshibka chteniya adresa: " + url)
             ret = "," # фиктивный ответ
 
         return ret.split(",")
