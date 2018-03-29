@@ -9,8 +9,6 @@ except ImportError:
     from urllib.request import urlopen
     from urllib.parse import quote
 
-# SMSC_LOGIN = "mirsoft"
-# SMSC_PASSWORD = "taxi2015"
 
 STATUS_CHOICES = {'0': _('Success'),
                   '1': _('Abonent does not exist'),
