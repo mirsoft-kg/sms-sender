@@ -90,6 +90,7 @@ class SMSC(object):
 
         result = {'id': response[0],
                   'status': STATUS_CHOICES[response[1][1:]] if response[1][1:] != '' else STATUS_CHOICES['0'],
+                  'status_code': response[1][1:] if response[1][1:] != '' else '0',
                   'object': response}
         return result
 
@@ -117,7 +118,7 @@ class SMSC(object):
                 else:
                     data = urlopen(url + "?" + arg)
 
-                ret = str(data.read())
+                ret = data.read().decode('utf-8')
             except:
                 ret = ""
 
@@ -127,5 +128,4 @@ class SMSC(object):
             if settings.DEBUG:
                 print(u"Oshibka chteniya adresa: " + url)
             ret = "," # фиктивный ответ
-
         return ret.split(",")
