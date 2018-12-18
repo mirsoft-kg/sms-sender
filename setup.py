@@ -12,7 +12,7 @@ setup(
     author_email='dan.chambylov@gmail.com',
     description='sms sender',
     install_requires=[
-        'django<1.9',
+        'django',
     ],
     classifiers=[
         'Intended Audience :: Developers',
