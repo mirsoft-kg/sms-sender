@@ -3,10 +3,25 @@ import xml.etree.ElementTree as ET
 from urllib.request import urlopen, Request
 
 from django.conf import settings
+from django.utils.translation import gettext as _
 
 
 def get_settings_value(attr, default_value):
     return getattr(settings, attr) if hasattr(settings, attr) else default_value
+
+
+STATUS_CHOICES = {'0': _('Success'),
+                  '1': _('Format error'),
+                  '2': _('Username or password incorrect'),
+                  '3': _('Incorrect IP address of sender'),
+                  '4': _('Insufficient funds for sending all sms messages'),
+                  '5': _('Not approved sender name'),
+                  '6': _('Message was stopped due to stop phrases'),
+                  '7': _('Invalid phone number format'),
+                  '8': _('Wrong time format'),
+                  '9': _('Blocked due to spam filtering'),
+                  '10': _('Blocked due to repeated id'),
+                  '11': _('Test message was successful, but not sent')}
 
 
 class NikitaKg(object):
@@ -30,6 +45,14 @@ class NikitaKg(object):
         response = urlopen(request).read()
         xml_response = ET.fromstring(response)
         children = xml_response.getchildren()
+
+        result = {'phone': phones}
+        for i in children:
+            if i.tag.endswith('status'):
+                result['status'] = STATUS_CHOICES[i.text]
+            elif i.tag.endswith('id'):
+                result['id'] = i.text
+        return result
 
     def make_xml_document(self, phone_numbers, message, sender, id, time=None, test=False):
         root = ET.Element('message')

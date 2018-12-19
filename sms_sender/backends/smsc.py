@@ -45,8 +45,10 @@ STATUS_MESSAGE = {'-1': _('Waiting to send'),
                   '24': _('Insufficient funds'),
                   '25': _('Unavailable phone number')}
 
+
 def get_settings_value(attr, default_value):
     return getattr(settings, attr) if hasattr(settings, attr) else default_value
+
 
 class SMSC(object):
     def __init__(self):
