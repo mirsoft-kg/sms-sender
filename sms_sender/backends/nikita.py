@@ -11,11 +11,11 @@ def get_settings_value(attr, default_value):
 
 class NikitaKg(object):
     def __init__(self):
-        self.sender_name = get_settings_value('NIKITA_SENDER_NAME', '')
-        self.login = get_settings_value('NIKITA_LOGIN', '')
-        self.password = get_settings_value('NIKITA_PASSWORD', '')
+        self.sender_name = get_settings_value('SMS_SENDER_NAME', '')
+        self.login = get_settings_value('SMS_LOGIN', '')
+        self.password = get_settings_value('SMS_PASSWORD', '')
 
-    def send_sms(self, phones, message, time=None, id=0, sender=None):
+    def send_sms(self, phones, message, time=None, sender=None):
         if not isinstance(phones, list):
             phones = [phones]
         if not sender:
